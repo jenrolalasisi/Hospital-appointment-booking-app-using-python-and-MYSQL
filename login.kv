@@ -1,198 +1,543 @@
-WindowManager:
-    LoginScreen:
-    Dashboard:
-    PatientScreen:
-    ForgetPassword:
-    doctorpan:
+<login>:
 
-<LoginScreen>:
-    name:"login"
-
-    BoxLayout:
-        orientation:"vetical"
-
-        
-<Dashboard>:
-    name:"dash"
-
+    logph:logph
+    logpword:logpword
+    
+    canvas.before:
+        Rectangle:
+            source:"bgg.jpeg"
+            size: self.size
+            pos : self.pos
     BoxLayout:
         orientation:"vertical"
+        size_hint: 0.8, 0.6
+        
+        spacing: '10px'
+        padding: "5px"
+        pos_hint:{'center_x':0.5, 'center_y':0.5}
+        opacity: 0.85
 
-        GridLayout:
-            cols: 2
-            size_hint_y: None
-            height: 100
+        canvas.before:
+            Color:
+                rgba:216/255, 230/255, 240/255, 1
 
-            GridLayout:
-                cols: 1
+            Rectangle:
+                size: self.size
+                pos : self.pos
+        
+        MDLabel:
+            text:"Lasanjo Health Management System"
+            halign:"center"
+            font_size: '15px'
 
-                Label:
-                    text:"Dr Lasisi Akinola Muideen"
-                    color: 0,0,0,1
-
-                Label:
-                    text:"345-654-345-653"
-                    color: 0,0,0,1
-
-            Image:
-                source:"logo.png"
-
-        GridLayout:
-            cols: 3
-            size_hint_y:None
-            height:50
+        MDLabel:
+            text:"Sign In"
+            halign:"center"
             
-            Button:
-                text:"Bookings"
+        MDTextFieldRound:
+            id: logph
+            hint_text:"Enter your Phone Number"
+            size_hint_x: 0.8
+            pos_hint:{'center_x':0.5}
 
-            Button:
-                text:"History"
+        MDTextFieldRound:
+            id: logpword
+            hint_text:"Enter your Password"
+            size_hint_x: 0.8
+            pos_hint:{'center_x':0.5}
 
-            Button:
-                text:"Settings"
-                on_release: app.root.current= "set"
+        MDIconButton:
+            icon:'arrow-right'
+            md_bg_color: app.theme_cls.primary_color
+            on_release: root.sigin()
+            pos_hint:{'center_x':0.5}
 
+        MDFillRoundFlatButton:
+            text:"Sign Up"
+            on_release: root.sigu()
+            pos_hint:{'center_x':0.5}
+            size_hint_x: 0.8
+            
+
+        MDFillRoundFlatButton:
+            text:"Forgot Password"
+            on_release: root.fpword()
+            pos_hint:{'center_x':0.5}
+            size_hint_x: 0.8
+            
+
+<dashboard>:
+    screen_man:screen_man
+    
+    Screen:
+    
         BoxLayout:
             orientation:"vertical"
 
-            GridLayout:
-                cols:3
+            MDToolbar:
+                id: toolbar
+                title: ""
+                pos_hint:{"top": 1}
+                left_action_items:[["menu", lambda x: nav_drawer.set_state("open")]]
 
-                Label:
-                    text:"Paul Brown"
-                    color: 0,0,0,1
+            NavigationLayout:
+                x: toolbar.height
 
-                Label:
-                    text:"234-543"
-                    color:0,0,0,1
+                ScreenManager:
+                    id: screen_man
 
-                Label:
-                    text:"8:00-9:00"
-                    color: 0,0,0,1
+                    Screen:
+                        name: "main"
+                        canvas.before:
+                            Rectangle:
+                                source: 'home.jpeg'
+                                size: self.size
+                                pos: self.pos
 
-            GridLayout:
-                cols:3
+                        MDCard:
+                            size_hint:0.95 , 0.95
+                            pos_hint: {'center_x':0.5 , 'center_y':0.5}
 
-                Label:
-                    text:"Paul Brown"
-                    color: 0,0,0,1
+                            ScrollView:
+                                MDList:
+                                    ThreeLineAvatarListItem:
+                                        text:"Kubwa General Hospital"
+                                        secondary_text:"8:00AM - 8:30AM"
+                                        tertiary_text:"Dr Lasisi Muideen"
+                                        ImageLeftWidget:
+                                            source:"jenny.jpg"
 
-                Label:
-                    text:"234-543"
-                    color:0,0,0,1
+                                    ThreeLineAvatarListItem:
+                                        text:"Gwarinpa General Hospital"
+                                        secondary_text:"10:00AM - 10:30AM"
+                                        tertiary_text:"Dr Lasisi Jenrolaoluwa"
+                                        ImageLeftWidget:
+                                            source:"daddy.jpg"
 
-                Label:
-                    text:"8:00-9:00"
-                    color: 0,0,0,1
-            GridLayout:
-                cols:3
+                                
 
-                Label:
-                    text:"Paul Brown"
-                    color: 0,0,0,1
+                        MDFloatingActionButton:
+                            icon: 'plus'
+                            md_bg_color: app.theme_cls.primary_color
+                            pos_hint:{'center_x':0.85 , 'center_y':0.1}
+                            on_release: root.chgbook()
+                            
+                    Screen:
+                        name: "changepword"
+                        canvas.before:
+                            Rectangle:
+                                source:'home.jpeg'
+                                pos:self.pos
+                                size: self.size
 
-                Label:
-                    text:"234-543"
-                    color:0,0,0,1
+                        BoxLayout:
+                            orientation:'vertical'
+                            pos_hint:{'center_x':0.5, 'center_y':0.5}
+                            spacing:"15px"
+                            size_hint: 0.7, 0.5
+                                
+                            MDLabel:
+                                text:"Change Password"
+                                halign:"center"
 
-                Label:
-                    text:"8:00-9:00"
-                    color: 0,0,0,1
-            GridLayout:
-                cols:3
+                            MDTextFieldRound:
+                                hint_text: "Enter your Current Password"
+                                
+                            MDTextFieldRound:
+                                hint_text: "Enter your New Password"
 
-                Label:
-                    text:"Paul Brown"
-                    color: 0,0,0,1
+                            MDTextFieldRound:
+                                hint_text: "Re-Enter your New Password"
 
-                Label:
-                    text:"234-543"
-                    color:0,0,0,1
+                            MDFillRoundFlatButton:
+                                text: "Change"
+                                pos_hint:{'center_x':0.5}
 
-                Label:
-                    text:"8:00-9:00"
-                    color: 0,0,0,1
-            GridLayout:
-                cols:3
+                    Screen:
+                        name:"card"
 
-                Label:
-                    text:"Paul Brown"
-                    color: 0,0,0,1
+                        ScrollView:
+                            MDList:
+                                OneLineListItem:
+                                    text:"Kubwa General Hospital"
 
-                Label:
-                    text:"234-543"
-                    color:0,0,0,1
+                                OneLineListItem:
+                                    text:"Gwarimpa General Hospital"
+                            
+                            
+                        
 
-                Label:
-                    text:"8:00-9:00"
-                    color: 0,0,0,1
-            GridLayout:
-                cols:3
+                            
 
-                Label:
-                    text:"Paul Brown"
-                    color: 0,0,0,1
+                                
 
-                Label:
-                    text:"234-543"
-                    color:0,0,0,1
+                MDNavigationDrawer:
+                    id: nav_drawer
 
-                Label:
-                    text:"8:00-9:00"
-                    color: 0,0,0,1
-            GridLayout:
-                cols:3
+                    BoxLayout:
+                        orientation: "vertical"
+                        padding: "5px"
 
-                Label:
-                    text:"Paul Brown"
-                    color: 0,0,0,1
+                        Image:
+                            source:"bgg.jpeg"
 
-                Label:
-                    text:"234-543"
-                    color:0,0,0,1
+                        ScrollView:
+                            MDList:
+                                OneLineIconListItem:
+                                    canvas.before:
+                                        Color:
+                                            rgba:
+                                                216/255, 230/255, 240/255, 1
+                                        Rectangle:
+                                            size: self.size
+                                            pos: self.pos
+                                            
+                                    text:"Main"
+                                    on_press:
+                                        nav_drawer.set_state('close')
+                                        root.screen_man.current = "main"
+                                    IconLeftWidget:
+                                        icon: 'account-circle'
 
-                Label:
-                    text:"8:00-9:00"
-                    color: 0,0,0,1
-            GridLayout:
-                cols:3
+                                OneLineIconListItem:
+                                    canvas.before:
+                                        Color:
+                                            rgba:
+                                                216/255, 230/255, 240/255, 1
+                                        Rectangle:
+                                            size: self.size
+                                            pos: self.pos
+                                        
+                                    text:"Hospital Card"
+                                    on_press:
+                                        nav_drawer.set_state('close')
+                                        root.screen_man.current = "card"
+                                    IconLeftWidget:
+                                        icon: 'card'
 
-                Label:
-                    text:"Paul Brown"
-                    color: 0,0,0,1
+                                OneLineIconListItem:
+                                    canvas.before:
+                                        Color:
+                                            rgba:
+                                                216/255, 230/255, 240/255, 1
+                                        Rectangle:
+                                            size: self.size
+                                            pos: self.pos
+                                            
+                                    text:"Logout"
+                                    on_press:
+                                        nav_drawer.set_state('close')
+                                        root.logot()
+                                    IconLeftWidget:
+                                        icon: 'logout'
+                                        
+                                OneLineIconListItem:
+                                    canvas.before:
+                                        Color:
+                                            rgba:
+                                                216/255, 230/255, 240/255, 1
+                                        Rectangle:
+                                            size: self.size
+                                            pos: self.pos
+                                            
+                                    text:"Change Password"
+                                    on_press:
+                                        nav_drawer.set_state('close')
+                                        root.screen_man.current = "changepword"
+                                    IconLeftWidget:
+                                        icon: 'sync'
 
-                Label:
-                    text:"234-543"
-                    color:0,0,0,1
+<signu>:
 
-                Label:
-                    text:"8:00-9:00"
-                    color: 0,0,0,1
-            GridLayout:
-                cols:3
-
-                Label:
-                    text:"Paul Brown"
-                    color: 0,0,0,1
-
-                Label:
-                    text:"234-543"
-                    color:0,0,0,1
-
-                Label:
-                    text:"8:00-9:00"
-                    color: 0,0,0,1
-            
-<PatientScreen>:
-    name:"patient"
-
-<ForgetPassword>:
-    name: "forgetpword"
-
-<doctorpan>:
-    name: "set"
+    nam:nam
+    phone:phone
+    email:email
+    pword:pword
+    repword:repword
     
-    Button:
-        text:"Log Out"
-        on_release:
-            app.root.current="login"
+    canvas.before:
+        Rectangle:
+            source:"bgg.jpeg"
+            size: self.size
+            pos : self.pos
+
+    BoxLayout:
+        orientation:"vertical"
+        size_hint: 0.8, 0.6
+        spacing: '10px'
+        padding: "20px"
+        pos_hint:{'center_x':0.5, 'center_y':0.5}
+        opacity: 0.85
+
+        canvas.before:
+            Color:
+                rgba:216/255, 230/255, 240/255, 1
+
+            Rectangle:
+                size: self.size
+                pos : self.pos
+
+        MDLabel:
+            text:"Sign Up"
+            halign:"center"
+
+        MDTextFieldRound:
+            id: nam
+            hint_text: "Name"
+
+        MDTextFieldRound:
+            id:phone
+            hint_text: "Phone Number"
+
+        MDTextFieldRound:
+            id: email
+            hint_text: "E-mail"
+
+        MDTextFieldRound:
+            id: pword
+            hint_text: "Enter your Password"
+
+        MDTextFieldRound:
+            id:repword
+            hint_text: "Re-Enter your password"
+
+        GridLayout:
+            cols: 2
+            spacing:"10px"
+            
+
+            MDFillRoundFlatButton:
+                text:"Create"
+                on_release:root.creacct()
+
+            MDFillRoundFlatButton:
+                text:"cancel"
+                on_release:  root.cansig()
+        
+<forpword>:
+    canvas.before:
+        Rectangle:
+            source:"bgg.jpeg"
+            size: self.size
+            pos : self.pos
+
+    BoxLayout:
+        orientation:"vertical"
+        size_hint: 0.8, 0.6
+        spacing: '10px'
+        padding: "20px"
+        pos_hint:{'center_x':0.5, 'center_y':0.5}
+        opacity: 0.85
+
+        canvas.before:
+            Color:
+                rgba:216/255, 230/255, 240/255, 1
+
+            Rectangle:
+                size: self.size
+                pos : self.pos
+
+        MDLabel:
+            text:"A code will be sent to the E-mail you enter"
+            font_size: '14dp'
+            halign: "center"
+
+        MDTextFieldRound:
+            hint_text: "Enter your Phone Number"
+
+        MDTextFieldRound:
+            hint_text: "Enter the code"
+
+        GridLayout:
+            cols: 2
+            spacing:"10px"
+            
+
+            MDFillRoundFlatButton:
+                text:"Next"
+                on_release: root.chgpword()
+
+            MDFillRoundFlatButton:
+                text:"cancel"
+                on_release: root.canfpwor()
+
+<book>:
+
+    problemtext:problemtext
+    book_page:book_page
+    problems:problems
+    date:date
+    time:time
+    
+    canvas.before:
+        Rectangle:
+            source:'home.jpeg'
+            pos:self.pos
+            size: self.size
+            
+    MDToolbar:
+        title:"Booking"
+        pos_hint:{"top": 1}
+        left_action_items:[["arrow-left", lambda x: root.goback()]]
+            
+    
+    ScreenManager:
+        id: book_page
+
+        Screen:
+            name:"problem"
+
+            MDLabel:
+                id: problemtext
+                size_hint_y: None
+                height: 50
+                text: "Select a problem below"
+                halign:"center"
+                pos_hint:{'center_y': 0.8}
+
+                
+            MDCard:
+                size_hint:0.8, 0.5
+                pos_hint:{'center_x':0.5, 'center_y':0.5}
+
+                        
+                        
+                ScrollView:
+                    MDList:
+                        id: problems
+                        
+                        RightCheckbox:
+                        
+                        
+            MDLabel:
+                text:"ok"
+
+            MDIconButton:
+                icon:'arrow-right'
+                md_bg_color: app.theme_cls.primary_color
+                pos_hint:{'center_x':0.5,'center_y':0.1}
+                on_release: root.book_page.current = "hospital"
+
+
+        Screen:
+            name: "hospital"
+
+            MDLabel:
+                id: problemtext
+                size_hint_y: None
+                height: 50
+                text: "Select a hospital"
+                halign:"center"
+                pos_hint:{'center_y': 0.8}
+
+            MDCard:
+                size_hint:0.8, 0.5
+                pos_hint:{'center_x':0.5, 'center_y':0.5}
+
+                ScrollView:
+                    MDList:
+                        OneLineListItem:
+                            text:"Kubwa Genral Hospital"
+                            
+                        OneLineListItem:
+                            text:"Kubwa Genral Hospital"
+
+                        OneLineListItem:
+                            text:"Kubwa Genral Hospital"
+
+                        OneLineListItem:
+                            text:"Kubwa Genral Hospital"
+
+                        OneLineListItem:
+                            text:"Kubwa Genral Hospital"
+
+                        OneLineListItem:
+                            text:"Kubwa Genral Hospital"
+
+                        OneLineListItem:
+                            text:"Kubwa Genral Hospital"
+
+                        OneLineListItem:
+                            text:"Kubwa Genral Hospital"
+        
+            MDIconButton:
+                icon:'arrow-left'
+                md_bg_color: app.theme_cls.primary_color
+                pos_hint:{'center_x':0.4,'center_y':0.1}
+                on_release: root.book_page.current = "problem"
+
+            MDIconButton:
+                icon:'arrow-right'
+                md_bg_color: app.theme_cls.primary_color
+                pos_hint:{'center_x':0.6,'center_y':0.1}
+                on_release: root.book_page.current = "timedat"
+
+        Screen:
+            name: "timedat"
+
+            MDLabel:
+                text:"Select a date and time"
+                halign:"center"
+                pos_hint:{'center_y':0.8}
+
+            MDLabel:
+                id: date
+                text:""
+                halign:"center"
+                pos_hint:{'center_y':0.7}
+
+            MDRaisedButton:
+                text: "Select a date"
+                pos_hint:{'center_x':0.5,'center_y':0.6}
+                on_release: root.show_time_pick()
+
+            MDLabel:
+                id: time
+                text:""
+                halign:"center"
+                pos_hint:{'center_y':0.5}
+
+            MDRaisedButton:
+                text: "Select a time"
+                pos_hint:{'center_x':0.5,'center_y':0.4}
+                on_release: root.show_time_pick()
+                
+                
+            MDIconButton:
+                icon:'arrow-left'
+                md_bg_color: app.theme_cls.primary_color
+                pos_hint:{'center_x':0.4,'center_y':0.1}
+                on_release: root.book_page.current = "hospital"
+
+            MDIconButton:
+                icon:'arrow-right'
+                md_bg_color: app.theme_cls.primary_color
+                pos_hint:{'center_x':0.6,'center_y':0.1}
+                on_release: root.book_page.current = "confirmation"
+        
+        Screen:
+            name: "confirmation"
+
+            MDCard:
+                size_hint:0.8, 0.5
+                pos_hint:{'center_x':0.5, 'center_y':0.5}
+                on_touch_down: root.show_time_pick() 
+
+            MDIconButton:
+                icon:'arrow-left'
+                md_bg_color: app.theme_cls.primary_color
+                pos_hint:{'center_x':0.4,'center_y':0.1}
+                on_release: root.book_page.current = "timedat"
+
+            
+            MDIconButton:
+                icon:'arrow-right'
+                md_bg_color: app.theme_cls.primary_color
+                pos_hint:{'center_x':0.6,'center_y':0.1}
+                on_release:
+                    root.book_page.current = "problem"
+                    root.retur()
+                
+
+
+
