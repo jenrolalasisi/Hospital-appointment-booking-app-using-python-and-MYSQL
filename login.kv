@@ -1,0 +1,198 @@
+WindowManager:
+    LoginScreen:
+    Dashboard:
+    PatientScreen:
+    ForgetPassword:
+    doctorpan:
+
+<LoginScreen>:
+    name:"login"
+
+    BoxLayout:
+        orientation:"vetical"
+
+        
+<Dashboard>:
+    name:"dash"
+
+    BoxLayout:
+        orientation:"vertical"
+
+        GridLayout:
+            cols: 2
+            size_hint_y: None
+            height: 100
+
+            GridLayout:
+                cols: 1
+
+                Label:
+                    text:"Dr Lasisi Akinola Muideen"
+                    color: 0,0,0,1
+
+                Label:
+                    text:"345-654-345-653"
+                    color: 0,0,0,1
+
+            Image:
+                source:"logo.png"
+
+        GridLayout:
+            cols: 3
+            size_hint_y:None
+            height:50
+            
+            Button:
+                text:"Bookings"
+
+            Button:
+                text:"History"
+
+            Button:
+                text:"Settings"
+                on_release: app.root.current= "set"
+
+        BoxLayout:
+            orientation:"vertical"
+
+            GridLayout:
+                cols:3
+
+                Label:
+                    text:"Paul Brown"
+                    color: 0,0,0,1
+
+                Label:
+                    text:"234-543"
+                    color:0,0,0,1
+
+                Label:
+                    text:"8:00-9:00"
+                    color: 0,0,0,1
+
+            GridLayout:
+                cols:3
+
+                Label:
+                    text:"Paul Brown"
+                    color: 0,0,0,1
+
+                Label:
+                    text:"234-543"
+                    color:0,0,0,1
+
+                Label:
+                    text:"8:00-9:00"
+                    color: 0,0,0,1
+            GridLayout:
+                cols:3
+
+                Label:
+                    text:"Paul Brown"
+                    color: 0,0,0,1
+
+                Label:
+                    text:"234-543"
+                    color:0,0,0,1
+
+                Label:
+                    text:"8:00-9:00"
+                    color: 0,0,0,1
+            GridLayout:
+                cols:3
+
+                Label:
+                    text:"Paul Brown"
+                    color: 0,0,0,1
+
+                Label:
+                    text:"234-543"
+                    color:0,0,0,1
+
+                Label:
+                    text:"8:00-9:00"
+                    color: 0,0,0,1
+            GridLayout:
+                cols:3
+
+                Label:
+                    text:"Paul Brown"
+                    color: 0,0,0,1
+
+                Label:
+                    text:"234-543"
+                    color:0,0,0,1
+
+                Label:
+                    text:"8:00-9:00"
+                    color: 0,0,0,1
+            GridLayout:
+                cols:3
+
+                Label:
+                    text:"Paul Brown"
+                    color: 0,0,0,1
+
+                Label:
+                    text:"234-543"
+                    color:0,0,0,1
+
+                Label:
+                    text:"8:00-9:00"
+                    color: 0,0,0,1
+            GridLayout:
+                cols:3
+
+                Label:
+                    text:"Paul Brown"
+                    color: 0,0,0,1
+
+                Label:
+                    text:"234-543"
+                    color:0,0,0,1
+
+                Label:
+                    text:"8:00-9:00"
+                    color: 0,0,0,1
+            GridLayout:
+                cols:3
+
+                Label:
+                    text:"Paul Brown"
+                    color: 0,0,0,1
+
+                Label:
+                    text:"234-543"
+                    color:0,0,0,1
+
+                Label:
+                    text:"8:00-9:00"
+                    color: 0,0,0,1
+            GridLayout:
+                cols:3
+
+                Label:
+                    text:"Paul Brown"
+                    color: 0,0,0,1
+
+                Label:
+                    text:"234-543"
+                    color:0,0,0,1
+
+                Label:
+                    text:"8:00-9:00"
+                    color: 0,0,0,1
+            
+<PatientScreen>:
+    name:"patient"
+
+<ForgetPassword>:
+    name: "forgetpword"
+
+<doctorpan>:
+    name: "set"
+    
+    Button:
+        text:"Log Out"
+        on_release:
+            app.root.current="login"
